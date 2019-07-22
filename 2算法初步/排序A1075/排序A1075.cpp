@@ -1,111 +1,125 @@
 ﻿// 排序A1075.cpp
-//
+// 最后一个测试点仍然偶尔可能超时
 
 #include <iostream>
 #include <vector>
 #include <algorithm> 
 #include <functional>
-#include <map>
+#include <unordered_map>
 using namespace std;
 
 const int score_none = -99999;
-struct user {
-	user(int cntProblems) 
+const auto isValidScore = bind(greater_equal<int>(), placeholders::_1, 0);
+
+struct userinfo {
+	userinfo(const int& cntProblems)
 		: scores(cntProblems, score_none)
 	{}
-	string id;
-	vector<int> scores;
+	userinfo(const userinfo&o) 
+		: total(o.total), perfect(o.perfect)
+	{}
+	userinfo() {}
 	int total = 0;
 	int perfect = 0;
 	int rank;
+	vector<int> scores;
 };
-
 
 int main()
 {
 	int cntUser, cntProblems, cntSubmission;
-	scanf("%d%d%d", &cntUser, &cntProblems, &cntSubmission);
-	//cin >> cntUser >> cntProblems >> cntSubmission;
+	cin >> cntUser >> cntProblems >> cntSubmission; //scanf("%d%d%d", &cntUser, &cntProblems, &cntSubmission);
 	vector<int> fullMarks(cntProblems);
 	for (int i = 0; i < cntProblems;i++) {
-		scanf("%d", &fullMarks[i]);
-		// cin >> fullMarks[i];
+		cin >> fullMarks[i]; // scanf("%d", &fullMarks[i]);
 	}
-	vector<user> users;
-	map<string, vector<int> > scores;
-	users.reserve(cntUser);
-	string user_id(5, '0'); int problem_id, partial_score_obtained;
-	for (int i = 0; i < cntSubmission; i++) {
-		scanf("%5s%d%d", user_id.data(), &problem_id, &partial_score_obtained);
-		// cin >> user_id >> problem_id >> partial_score_obtained;
-		auto iteruser = find_if(users.begin(), users.end(), [user_id](user& u) {return u.id == user_id; });
-		if (iteruser == users.end()) {
-			iteruser = users.emplace(users.end(), cntProblems);
-			iteruser->id = user_id;
-			iteruser->perfect = 0;
-		}
-		// 不能超出满分 & 满分计数
-		if (partial_score_obtained >= fullMarks[problem_id - 1]) {
-			partial_score_obtained = fullMarks[problem_id - 1];
-			iteruser->perfect++;
-		}
-		// 取多次提交的最大分
-		if (partial_score_obtained > iteruser->scores[problem_id - 1]) {
-			iteruser->scores[problem_id - 1] = partial_score_obtained;
-		}
-	}
-	// 计算总分
-	for (user& u : users) {
-		u.total = 0;
-		for (int& score : u.scores) {
-			if (score >= 0) { // <0为特殊标志
-				u.total += score;
+	vector<string> users; users.reserve(cntUser);
+	unordered_map<string, userinfo > usersinfo; usersinfo.reserve(cntUser);
+	{
+		string user_id(5, '0'); int problem_id, partial_score_obtained;
+		for (int i = 0; i < cntSubmission; i++) {
+			cin >> user_id >> problem_id >> partial_score_obtained; // scanf("%5s%d%d", (char*)user_id.data(), &problem_id, &partial_score_obtained);
+			 // 注意，此处不能用find_if遍历users的方法，时间复杂度过高会导致超时，
+			// 借用unordered_map（hash_map）可O(1)完成查找
+			if (usersinfo.count(user_id) == 0) {
+				// 初始化用户信息
+				users.push_back(user_id);
+				usersinfo.emplace(user_id, cntProblems);
+				usersinfo[user_id].perfect = 0;
+				usersinfo[user_id].scores.resize(cntProblems, score_none);
+			}
+			// 不能超出满分 & 满分计数
+			if (partial_score_obtained >= fullMarks[problem_id - 1]) {
+				partial_score_obtained = fullMarks[problem_id - 1];
+				if (usersinfo[user_id].scores[problem_id - 1] < fullMarks[problem_id - 1]) {
+					// 该题未获得过满分，计满分1
+					usersinfo[user_id].perfect++;
+				}
+			}
+			// 取多次提交的最大分
+			if (partial_score_obtained > usersinfo[user_id].scores[problem_id - 1]) {
+				usersinfo[user_id].scores[problem_id - 1] = partial_score_obtained;
 			}
 		}
 	}
-	sort(users.begin(), users.end(), [](user& a, user& b) {
-		if (a.total != b.total) {
-			return a.total > b.total;
+	// 计算总分
+	for (string& uid : users) {
+		usersinfo[uid].total = 0;
+		bool hasTotal = false; // 是否有过有效提交
+		for (int& score : usersinfo[uid].scores) {
+			if (score >= 0) { // <0为特殊标志，代表无效分数，数值区分不同无效情形
+				usersinfo[uid].total += score;
+				hasTotal = true;
+			}
 		}
-		if (a.perfect != b.perfect) {
-			return a.perfect > b.perfect;
+		if (!hasTotal) {
+			usersinfo[uid].total = score_none;
 		}
-		return a.id < b.id; 
+	}
+	sort(users.begin(), users.end(), [&usersinfo](string& a, string& b) {
+		if (usersinfo[a].total != usersinfo[b].total) {
+			return usersinfo[a].total > usersinfo[b].total;
+		}
+		if (usersinfo[a].perfect != usersinfo[b].perfect) {
+			return usersinfo[a].perfect > usersinfo[b].perfect;
+		}
+		return a < b;
 		}
 	);
-	if (users.empty()) {
+	if (usersinfo.empty()) {
 		return 0;
 	}
 	// 此处也不适合用for-range
 	for (size_t i = 0; i < users.size(); i++) {
-		user& u = users[i];
-		if (i != 0 && users[i].total == users[i-1].total) {
-			u.rank = users[i - 1].rank;
+		const string& uid = users[i];
+		userinfo& u = usersinfo[uid];
+		// assign rank
+		if (i != 0 && usersinfo[uid].total == usersinfo[users[i-1]].total) {
+			u.rank = usersinfo[users[i - 1]].rank;
 		}
 		else {
 			u.rank = i+1;
 		}
-		if (find_if(u.scores.begin(), u.scores.end(), bind(greater_equal<int>(), placeholders::_1, 0)) == u.scores.end()) {
+		// output
+		if (u.total == score_none) {
+			// 无有效成绩，跳过该用户的输出
 			continue;
 		}
-		printf("%d %s %d", u.rank, u.id.c_str(), u.total);
-		// cout << u.rank << " " << u.id << " " << u.total;
-		for_each(u.scores.begin(), u.scores.end(), [&](int score)
-			{
-				if (score == score_none) {
-					printf(" -");
-					//cout << " -";
+		printf("%d %s %d", u.rank, uid.c_str(), u.total); // cout << u.rank << " " << uid << " " << u.total;
+		int len = usersinfo[uid].scores.size();
+		for (int i = 0; i < len; ++i) {
+			int& score = usersinfo[uid].scores[i];
+			if (score == score_none) {
+				printf(" -");  // cout << " -";
+			}
+			else {
+				if (score < 0) {
+					score = 0;
 				}
-				else{
-					if (score<0) {
-						score = 0;
-					}
-					printf(" %d", score);
-					// cout << " " << score;
-				}
-			});
-		printf("\n");
-		// cout << endl;
+				printf(" %d", score); // cout << " " << score;
+			}
+		}
+		printf("\n"); // cout << endl;
 	}
 }
 
