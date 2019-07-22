@@ -1,10 +1,8 @@
 ﻿// 排序A1016.cpp
-// still cannot pass all case
-// Todo: pass case 3/4
 
 #include <iostream>
+#include <cstdio>
 #include <sstream>
-#include <iomanip>
 #include <vector>
 #include <algorithm> 
 using namespace std;
@@ -35,13 +33,8 @@ struct Date {
 	}
 };
 
-struct Call {
-	string name;
-	Date begin, end;
-	bool hasPair = false;
-};
-struct CallRecord {
-	string name;
+struct CallOper {
+	string user;
 	Date time;
 	string type;
 };
@@ -72,109 +65,97 @@ aaa 01:02:00:02 off-line)");*/
 		cin >> fee;
 	}
 	int n; cin >> n;
-	vector<CallRecord> records;
-	CallRecord t;
-	while (n--) {
-		cin >> t.name;
+	vector<CallOper> records(n);
+	for (int i = 0; i < n; i++) {
+		auto& t = records[i];
+		cin >> t.user;
 		cin >> t.time.month; cin.get();
 		cin >> t.time.day; cin.get();
 		cin >> t.time.hour; cin.get();
 		cin >> t.time.minute;
 		cin >> t.type;
-		records.push_back(t);
 	}
-	sort(records.begin(), records.end(), [](const CallRecord& a, const CallRecord& b) {
+	sort(records.begin(), records.end(), [](const CallOper& a, const CallOper& b) {
+		if (a.user != b.user) {
+			return a.user < b.user;
+		}
 		return a.time < b.time;
 		});
-	vector<Call> v; Call tc; int cnt = 0;
-	for(CallRecord& r: records) {
-		tc.name = r.name;
-		if (r.type == "on-line") {
-			tc.begin = r.time;
-			tc.hasPair = false;
-			v.push_back(tc);
-		}
-		else if (r.type == "off-line") {
-			Call* p = nullptr;
-			for (Call& c : v) {
-				if (c.name == r.name) {
-					if (!c.hasPair) {
-						if (r.time< c.begin) {
-							break;
-						}
-						p = &c;
-					}
-				}
-			}
-			if (p != nullptr) {
-				p->end = r.time;
-				p->hasPair = true;
-				cnt++;
-			}
-		}
-		else {
-			cerr << "illgeal type";
-		}
-	}
-	sort(v.begin(), v.end(), [](const Call& a, const Call& b) {
-		if (a.hasPair && !b.hasPair) {
-			return true;
-		}
-		if (!a.hasPair && b.hasPair) {
-			return false;
-		}
-		if (a.name != b.name) {
-			return a.name < b.name;
-		}
-		return a.begin < b.begin;
-	});
-	v.resize(cnt);
-
 	// output
-	if (v.empty()) {
+	if (records.empty()) {
 		return 0;
 	}
-	string calcUser; double sum = 0.0;
-	for (Call& c : v) {
-		if (!c.hasPair) {
-			continue;
+	double userFee = 0.0; // 单位是美分
+	int lastOnlineIndex = -1; // 当前用户上一个On-line记录
+	bool newuser = true,  // 用于切换统计的用户，重置相关量。
+		newUserOutputed = false; // 用于去除空记录用户。检测到新用户并不立即输出表头，延迟至第一对记录匹配成功，才输出。同样如表头未输出，则表尾也不输出。
+	for (size_t i = 0; i < records.size(); i++) {
+		CallOper& op = records[i];
+		if (newuser) {
+			userFee = 0.0;
+			lastOnlineIndex = -1;
+			newuser = false;
+			newUserOutputed = false;
 		}
-		if (calcUser.empty() || c.name != calcUser) {
-			if (!calcUser.empty()) {
-				// end previous user
-				cout << "Total amount: $" << fixed << setprecision(2) << sum / 100 << endl;
-			}
-			// new user
-			calcUser = c.name;
-			sum = 0.0;
-			cout << calcUser << " "
-				<< setfill('0') << setw(2) << c.begin.month
-				<< endl;
+ 		// assert(user == records[i].user);
+		if (op.type == "on-line") {
+			lastOnlineIndex = i;
 		}
-		cout << setw(2) << c.begin.day << ":"
-			<< setw(2) << c.begin.hour << ":"
-			<< setw(2) << c.begin.minute << " ";
-		cout << setw(2) << c.end.day << ":"
-			<< setw(2) << c.end.hour << ":"
-			<< setw(2) << c.end.minute << " ";
-		Date t = c.begin; int dur = 0; double fee = 0.0;
-		while (t != c.end) {
-			t.minute++;
-			dur++;
-			//clog << t.hour << " " << t.minute << " " << feePMatHour[t.hour] << endl;
-			fee += feePMatHour[t.hour];
-			if (t.minute == 60) {
-				t.minute = 0;
-				t.hour++;
+		else if (op.type == "off-line") {
+			if (lastOnlineIndex != -1) {
+				// valid pair
+				// calc time & fee
+				if (!newUserOutputed)
+				{
+					// output head
+					printf("%s %02d\n", op.user.c_str(), op.time.month);
+					/* cout << op.user << " "
+						<< setfill('0') << setw(2) << op.time.month
+						<< endl;*/
+					newUserOutputed = true;
+				}
+				int timeInMinute = 0;
+				double fee = 0.0; // 单位是美分
+				CallOper& prevOn = records[lastOnlineIndex];
+				{
+					Date t = prevOn.time;
+					while (t != op.time) {
+						fee += feePMatHour[t.hour];
+						timeInMinute++;
+						t.minute++;
+						if (t.minute == 60) {
+							t.minute = 0;
+							t.hour++;
+						}
+						if (t.hour == 24) {
+							t.hour = 0;
+							t.day++;
+						}
+					}
+				}
+				userFee += fee;
+				// output the Call
+				printf("%02d:%02d:%02d %02d:%02d:%02d %d $%.2f\n", 
+					prevOn.time.day, prevOn.time.hour, prevOn.time.minute,
+					op.time.day, op.time.hour, op.time.minute,
+					timeInMinute,
+					fee /100
+					);
 			}
-			if (t.hour == 24) {
-				t.hour = 0;
-				t.day++;
-			}
+			lastOnlineIndex = -1;
 		}
-		sum += fee;
-		cout << dur << " $" << fixed << setprecision(2) << fee/100 << endl;
+		else {
+			cerr << "illgeal type" << endl;
+		}
+		// 如果采用for-range写法，并不手动管理i而无法感知当前元素的位置与相邻元素的情况，反而代码更繁杂。
+		if (i == records.size() - 1 || records[i].user != records[i+1].user) {
+			if (newUserOutputed) {
+				printf("Total amount: $%.2f\n", userFee / 100);
+				// cout << "Total amount: $" << fixed << setprecision(2) << userFee / 100 << endl;
+			}
+			// reset flag for next user
+			newuser = true;
+		}
 	}
-	cout << "Total amount: $" << fixed << setprecision(2) << sum/100 << endl;
 }
 
