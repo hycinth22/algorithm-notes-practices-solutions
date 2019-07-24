@@ -8,7 +8,6 @@
 #include <vector>
 #include <algorithm>
 #include <set>
-#include <map>
 #include <unordered_map>
 #include <cassert>
 using namespace std;
@@ -134,7 +133,7 @@ int main()
 	//	clog << t.time << " " << t.plate << " " << (t.type==in?"in":"out") << endl;
 	//}
 	vector<int> queryscnt(nQuery, 0);
-	map<string, int> carsTimes;
+	unordered_map<string, int> carsTimes;
 	set<string> maxTimeCars; int maxTime = 0;
 	{
 		for (size_t i = 0; i < nRecord; i++) {
