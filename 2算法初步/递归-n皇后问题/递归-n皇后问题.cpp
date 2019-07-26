@@ -27,6 +27,13 @@ void outputChess(const vector<size_t>& e, size_t n) {
 	clog << endl << endl;
 }
 
+inline size_t absDiff(const size_t& a, const size_t& b) {
+	if (a < b) {
+		return b - a;
+	}
+	return a - b;
+}
+
 size_t f(size_t n) {
 	int cnt = 0;
 	vector< vector<size_t> > results; 
@@ -36,7 +43,7 @@ size_t f(size_t n) {
 		if (i == n) {
 			// 递归边界
 			cnt++;
-			clog << "# Solution" << results.size() << endl;
+			clog << "Solution #" << results.size() << endl;
 			// 此时e中保存的即为一种有效方案
 			outputChess(e, n);
 			results.push_back(e);
@@ -55,13 +62,7 @@ size_t f(size_t n) {
 					// x2,y2: i,j
 					size_t x1 = m, x2 = i,
 						y1 = e[m], y2 = j;
-					if (x1 < x2) {
-						swap(x1, x2);
-					}
-					if (y1 < y2) {
-						swap(y1, y2);
-					}
-					if (x1 - x2 == y1 - y2) {
+					if (absDiff(x1, x2) == absDiff(y1, y2)) {
 						// 在对角线上: |x1-x2|==|y1-y2|
 						canput = false;
 					}
@@ -85,6 +86,7 @@ size_t f(size_t n) {
 
 int main()
 {
+	cout.sync_with_stdio(0); clog.sync_with_stdio(0); cerr.sync_with_stdio(0);
 	while (1) {
 		int n; cin >> n;
 		cout << "Amount:" << f(n) << endl;
