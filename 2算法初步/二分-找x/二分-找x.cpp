@@ -14,22 +14,20 @@ struct input{
 
 int binaryFind(const vector<input>& v, const int& val) {
 	int n = v.size();
-	// range [left, right)
-	int left = 0, right = n;
-	while (left < right) {
-		int mid = left + (right-left) / 2; // 注意这里如果结果是小数（即区间内有偶数个元素，区间长度为奇数，最中间有两个元素），会取整，同时因为right不算在区间内，落在中间偏右的元素。
+	// range [left, right]
+	int left = 0, right = n-1;
+	while (left <= right) {
+		int mid = left + (right-left) / 2;
 		if (v[mid].val==val) {
 			return v[mid].pos;
 		}
 		else if (val < v[mid].val) {
-			right = mid;
+			right = mid - 1;
 		}
 		else if (val > v[mid].val) {
-			left = mid + 1; // 一定不要忘记+1，不仅仅是效率问题，忘记以后会在边界造成错过元素或死循环
-			if (left >= n) {
-				return -1;
-			}
+			left = mid + 1; 
 		}
+		// 一定不要忘记+-1，不仅仅是效率问题，忘记以后会在边界造成错过元素或死循环
 	}
 	return -1;
 }
