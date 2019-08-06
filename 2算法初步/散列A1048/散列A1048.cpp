@@ -9,7 +9,7 @@ int main()
 {
 	cin.sync_with_stdio(false);
 	int nCoins, pay; cin >> nCoins >> pay;
-	map<int, int> cnt;
+	map<int, int> cnt; // 使用map（红黑树）降低查找时间，此处使用散列表或者二分查找也可以。
 	while (nCoins--) {
 		static int par; cin >> par;
 		++cnt[par];
