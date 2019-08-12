@@ -50,13 +50,12 @@ vector<long long> isMergeSort(vector<long long> data, const vector<long long>& m
 	while(step/2 <= data.size()) {
 		for (size_t i = 0; i < n; i += step) {
 			auto begin = data.begin() + i;
-			auto mid = (i + step/2 < n)? (begin + step / 2) : data.end(); 
-			auto end = (i + step < n) ? (begin + step) : data.end();  // 不足以组成step长的区间，排序剩余的
+			auto mid = (i + step/2 < n)? (begin + step / 2) : data.end(); // 注意要固定长度step/2，不能直接/2，元素长度不足时要尽量多取以接近step/2，否则模拟结果不一致。
+			auto end = (i + step < n) ? (begin + step) : data.end();  // 不足以组成step长的区间，取剩余的
 			if (mid != end) {
 				// 这里没有自行实现merge操作，偷懒直接调用STL的归并函数，
-				inplace_merge(begin, mid, end);
-				// 当然也可以仿照上面插入排序调用排序算法完成局部排序。
-				// stable_sort(begin, end);
+				// [begin, mid), [mid, end)
+				inplace_merge(begin, mid, end); // 当然也可以仿照上面插入排序调用排序算法完成局部排序。// stable_sort(begin, end);
 			}
 		}
 		if (yes) {
