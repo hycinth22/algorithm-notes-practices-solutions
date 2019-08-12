@@ -22,7 +22,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{A7592614-BBEE-41BA-BDFB-4FBF20D48B8B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>其他技巧与算法B1045_A1101</RootNamespace>
+    <RootNamespace>递推B1045_A1101</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>递推B1045_A1101</ProjectName>
   </PropertyGroup>
