@@ -17,6 +17,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "最大公约数与最小公
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "最大公约数与最小公倍数codeup1818", "最大公约数与最小公倍数codeup1818\最大公约数与最小公倍数codeup1818.vcxproj", "{266FBF95-C717-4F13-BC0C-6394A159758B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "分数的四则运算A1081", "分数的四则运算A1081\分数的四则运算A1081.vcxproj", "{47B03E89-D630-4FE7-934B-DD28B7AE1497}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "分数的四则运算B1034_A1088", "分数的四则运算B1034_A1088\分数的四则运算B1034_A1088.vcxproj", "{2593B6A0-79B3-4554-B8FC-C76E34171FE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -81,6 +85,22 @@ Global
 		{266FBF95-C717-4F13-BC0C-6394A159758B}.Release|x64.Build.0 = Release|x64
 		{266FBF95-C717-4F13-BC0C-6394A159758B}.Release|x86.ActiveCfg = Release|Win32
 		{266FBF95-C717-4F13-BC0C-6394A159758B}.Release|x86.Build.0 = Release|Win32
+		{47B03E89-D630-4FE7-934B-DD28B7AE1497}.Debug|x64.ActiveCfg = Debug|x64
+		{47B03E89-D630-4FE7-934B-DD28B7AE1497}.Debug|x64.Build.0 = Debug|x64
+		{47B03E89-D630-4FE7-934B-DD28B7AE1497}.Debug|x86.ActiveCfg = Debug|Win32
+		{47B03E89-D630-4FE7-934B-DD28B7AE1497}.Debug|x86.Build.0 = Debug|Win32
+		{47B03E89-D630-4FE7-934B-DD28B7AE1497}.Release|x64.ActiveCfg = Release|x64
+		{47B03E89-D630-4FE7-934B-DD28B7AE1497}.Release|x64.Build.0 = Release|x64
+		{47B03E89-D630-4FE7-934B-DD28B7AE1497}.Release|x86.ActiveCfg = Release|Win32
+		{47B03E89-D630-4FE7-934B-DD28B7AE1497}.Release|x86.Build.0 = Release|Win32
+		{2593B6A0-79B3-4554-B8FC-C76E34171FE4}.Debug|x64.ActiveCfg = Debug|x64
+		{2593B6A0-79B3-4554-B8FC-C76E34171FE4}.Debug|x64.Build.0 = Debug|x64
+		{2593B6A0-79B3-4554-B8FC-C76E34171FE4}.Debug|x86.ActiveCfg = Debug|Win32
+		{2593B6A0-79B3-4554-B8FC-C76E34171FE4}.Debug|x86.Build.0 = Debug|Win32
+		{2593B6A0-79B3-4554-B8FC-C76E34171FE4}.Release|x64.ActiveCfg = Release|x64
+		{2593B6A0-79B3-4554-B8FC-C76E34171FE4}.Release|x64.Build.0 = Release|x64
+		{2593B6A0-79B3-4554-B8FC-C76E34171FE4}.Release|x86.ActiveCfg = Release|Win32
+		{2593B6A0-79B3-4554-B8FC-C76E34171FE4}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
