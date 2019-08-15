@@ -1,9 +1,12 @@
 ﻿// 素数B1013.cpp
-//
+// 素数表方法适用于对某一段密集的素数进行处理，要运算的素数间有关联。
+// 如此题需要输出的素数是按素数序号进行输出，可以减少验证素数的重复计算。
+// 缺点是要必须得知输入最大的数字，以及如果不使用bit表（bitset或vector<bool>）可能占用过多空间。
 
 #include <iostream>
 #include <vector>
 using namespace std;
+
 
 template<typename NumType = unsigned long long>
 struct primetable{
@@ -37,7 +40,6 @@ struct primetable{
 
 int main()
 {
-
 	int n, m; cin >> m >> n;
 	primetable<> t;
 	t.findNth(n);
