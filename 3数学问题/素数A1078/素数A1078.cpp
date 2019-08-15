@@ -4,70 +4,61 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <cmath>
 using namespace std;
 
-template<typename NumType = unsigned long long>
-struct primetable {
-	map<NumType, bool> filter; // Eratosthenes筛法, true代表已判断不是素数
-	void findUtil(NumType n) {
-		if (n < filter.size()) {
-			return;
-		}
-		clear();
-		// neither 0 or 1 is not a prime. 2 is a prime .
-		filter[0] = true;
-		filter[1] = true;
-		filter[2] = false;
-		for (NumType i = 2; i <= n; i++) {
-			if (!filter[i]) {
-				for (NumType j = i * 2; j <= n; j += i) {
-					filter[j] = true;
-				}
-			}
+bool isPrime(int m) {
+	if (m <= 1) return false; // 注意边界数据。不要只写==1，0和负数也不是质数。
+	int edge = int(sqrt(m)); // 注意边界条件。数学上应该是i<sqrt(m)，但是由于结果取整，小数部分被舍去，需要写成i<=sqrt(m)
+	// 同时注意，缓存结果以防止循环中多次重复开方运算。
+	for (int i = 2; i <= edge; i++) {
+		if (m % i == 0) {
+			return false;
 		}
 	}
-	void clear() {
-		filter.clear();
-	}
-	bool isPrime(NumType n) {
-		return !filter[n];
-	}
-};
+	return true;
+}
 
 int main()
 {
-	primetable<> t; t.findUtil(10000);
-
 	int msize, n; cin >> msize >> n;
-	while (!t.isPrime(msize)) {
+	while (!isPrime(msize)) {
 		msize++;
 	}
 
 	vector<bool> posFlag(msize, false);
 	vector<int> pos(msize, -1);
-	for (size_t i = 0; i < n; i++) {
+	for (int i = 0; i < n; i++) {
 		static int t, hash;
 		cin >> t; hash = t % msize;
 		int step = 1;
 		int finalhash = hash;
-		while (posFlag[finalhash]) {
-			finalhash = (hash + step * step) % msize; // 注意二次探查法的写法，是从原位置逐次查找0^2, 1^2, 2^2..., k^2
-			if (finalhash == hash) {
-				pos[i] = -1; // impossible to insert
-				goto next;
-			}
+		while (posFlag[finalhash] && step < msize) // 注意此处判断不可能插入的方法
+		{
+			finalhash = (hash + step * step) % msize; // 注意二次探查法的写法，是从原位置逐次查找raw+0^2, raw+1^2, raw+2^2..., raw+k^2
 			step++;
 		}
-		posFlag[finalhash] = true;
-		pos[i] = finalhash;
-	next:
-		continue;
-	}
-	if (!pos.empty()) {
-		cout << (pos.front()!=-1? pos.front():'-');
-		for (size_t i = 1; i < n; i++) {
-			cout << " " << pos[i];
+		if (!posFlag[finalhash]) {
+			posFlag[finalhash] = true;
+			pos[i] = finalhash;
+		}
+		else {
+			pos[i] = -1; // impossible to insert
 		}
 	}
+	if (!pos.empty()) {
+		for (int i = 0; i < n; i++) {
+			if (i != 0) cout << " ";
+			// cout << " " << (pos[i] != -1 ? pos[i] : "-"); 错误写法，三目表达式必须一致类型，'-'会被强转为int
+			if (pos[i] == -1) {
+				cout << "-";
+			}
+			else {
+				cout << pos[i];
+			}
+			
+		}
+	}
+	cout << endl;
 }
 

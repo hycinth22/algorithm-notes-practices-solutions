@@ -3,52 +3,31 @@
 
 #include <iostream>
 #include <map>
+#include <cmath>
 
 using namespace std;
 
-template<typename NumType = unsigned long long>
-struct primetable {
-	// vector<NumType> primes;
-	map<NumType, bool> filter; //	Eratosthenes筛法, true代表已判断不是素数
-	void findUtil(NumType n) {
-		if (n < filter.size()) {
-			return;
-		}
-		clear();
-		// neither 0 or 1 is not a prime. 2 is a prime .
-		filter[0] = true;
-		filter[1] = true;
-		filter[2] = false;
-		for (NumType i = 2; i <= n; i++) {
-			if (!filter[i]) {
-				// primes.push_back(i);
-				for (NumType j = i*2; j <= n; j += i) {
-					filter[j] = true;
-				}
-			}
+bool isPrime(int m) {
+	if (m <= 1) return false;
+	int edge = int(sqrt(m)); // 注意边界条件。数学上应该是i<sqrt(m)，但是由于结果取整，小数部分被舍去，需要写成i<=sqrt(m)
+	// 同时注意，缓存结果以防止循环中多次重复开方运算。
+	for (int i = 2; i <= edge; i++) {
+		if (m % i == 0) {
+			return false;
 		}
 	}
-	void clear() {
-		// primes.clear();
-		filter.clear();
-	}
-	bool isPrime(NumType n) {
-		return !filter[n];
-	}
-};
-
+	return true;
+}
 
 int main()
 {
-	primetable<> t;
-	t.findUtil(100000);
 	int n, radix;
 	while (cin >> n >> radix) {
 		if (n < 0) {
 			break;
 		}
 		bool reprime = false;
-		if (t.isPrime(n)) {
+		if (isPrime(n)) {
 			int reverseN = 0;
 			while (n>0) {
 				reverseN *= radix;
@@ -56,7 +35,7 @@ int main()
 				n /= radix;
 			}
 			clog << "reverse is " << reverseN;
-			if (t.isPrime(reverseN)) {
+			if (isPrime(reverseN)) {
 				reprime = true;
 			}
 		}
