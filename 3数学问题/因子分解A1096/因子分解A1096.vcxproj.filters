@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="质因子分解A1096.cpp">
+    <ClCompile Include="因子分解A1096.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
