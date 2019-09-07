@@ -54,6 +54,7 @@ double calc(const string& expr) {
 			// 由于数值栈只能存储int，因此必须把当前操作符的左操作数(按左结合)中所有更高优先级的运算符，
 			// 计算出来最终结果(int)，才能继续计算。
 			// 也即，将所有高优先级运算符(* /)先计算出来。
+			// 同优先级也要计算。因为减法不满足结合律。a+(b-c)!=a-(b+c)
 			while (!ops.empty() && ops.top().prior >= theop.prior)
 			{
 				op t = ops.top(); ops.pop();
