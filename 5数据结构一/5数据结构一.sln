@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29201.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "栈的应用codeup1918", "栈的应用codeup1918\栈的应用codeup1918.vcxproj", "{09C246DF-B9A7-41DF-8E69-76F17685C652}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "栈的应用A1051", "栈的应用A1051\栈的应用A1051.vcxproj", "{A38F78F2-9581-475D-AE9F-72BBE654AA85}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "队列的应用A1056", "队列的应用A1056\队列的应用A1056.vcxproj", "{C30A7308-EAE0-4374-AA79-1CE04630DDF5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +25,22 @@ Global
 		{09C246DF-B9A7-41DF-8E69-76F17685C652}.Release|x64.Build.0 = Release|x64
 		{09C246DF-B9A7-41DF-8E69-76F17685C652}.Release|x86.ActiveCfg = Release|Win32
 		{09C246DF-B9A7-41DF-8E69-76F17685C652}.Release|x86.Build.0 = Release|Win32
+		{A38F78F2-9581-475D-AE9F-72BBE654AA85}.Debug|x64.ActiveCfg = Debug|x64
+		{A38F78F2-9581-475D-AE9F-72BBE654AA85}.Debug|x64.Build.0 = Debug|x64
+		{A38F78F2-9581-475D-AE9F-72BBE654AA85}.Debug|x86.ActiveCfg = Debug|Win32
+		{A38F78F2-9581-475D-AE9F-72BBE654AA85}.Debug|x86.Build.0 = Debug|Win32
+		{A38F78F2-9581-475D-AE9F-72BBE654AA85}.Release|x64.ActiveCfg = Release|x64
+		{A38F78F2-9581-475D-AE9F-72BBE654AA85}.Release|x64.Build.0 = Release|x64
+		{A38F78F2-9581-475D-AE9F-72BBE654AA85}.Release|x86.ActiveCfg = Release|Win32
+		{A38F78F2-9581-475D-AE9F-72BBE654AA85}.Release|x86.Build.0 = Release|Win32
+		{C30A7308-EAE0-4374-AA79-1CE04630DDF5}.Debug|x64.ActiveCfg = Debug|x64
+		{C30A7308-EAE0-4374-AA79-1CE04630DDF5}.Debug|x64.Build.0 = Debug|x64
+		{C30A7308-EAE0-4374-AA79-1CE04630DDF5}.Debug|x86.ActiveCfg = Debug|Win32
+		{C30A7308-EAE0-4374-AA79-1CE04630DDF5}.Debug|x86.Build.0 = Debug|Win32
+		{C30A7308-EAE0-4374-AA79-1CE04630DDF5}.Release|x64.ActiveCfg = Release|x64
+		{C30A7308-EAE0-4374-AA79-1CE04630DDF5}.Release|x64.Build.0 = Release|x64
+		{C30A7308-EAE0-4374-AA79-1CE04630DDF5}.Release|x86.ActiveCfg = Release|Win32
+		{C30A7308-EAE0-4374-AA79-1CE04630DDF5}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
