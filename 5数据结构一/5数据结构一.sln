@@ -11,6 +11,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "队列的应用A1056", "队
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "链表处理B1025_A1074", "链表处理B1025_A1074\链表处理B1025_A1074.vcxproj", "{04BA8F3A-AA02-4DB1-89A4-0005442C4095}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "链表处理A1032", "链表处理A1032\链表处理A1032.vcxproj", "{44BF9E39-A95F-4908-8AF0-2DD5DB763F1F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "链表处理A1052", "链表处理A1052\链表A1052.vcxproj", "{16C90B86-6D2A-4384-83A1-BF8E1ECC65EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +55,22 @@ Global
 		{04BA8F3A-AA02-4DB1-89A4-0005442C4095}.Release|x64.Build.0 = Release|x64
 		{04BA8F3A-AA02-4DB1-89A4-0005442C4095}.Release|x86.ActiveCfg = Release|Win32
 		{04BA8F3A-AA02-4DB1-89A4-0005442C4095}.Release|x86.Build.0 = Release|Win32
+		{44BF9E39-A95F-4908-8AF0-2DD5DB763F1F}.Debug|x64.ActiveCfg = Debug|x64
+		{44BF9E39-A95F-4908-8AF0-2DD5DB763F1F}.Debug|x64.Build.0 = Debug|x64
+		{44BF9E39-A95F-4908-8AF0-2DD5DB763F1F}.Debug|x86.ActiveCfg = Debug|Win32
+		{44BF9E39-A95F-4908-8AF0-2DD5DB763F1F}.Debug|x86.Build.0 = Debug|Win32
+		{44BF9E39-A95F-4908-8AF0-2DD5DB763F1F}.Release|x64.ActiveCfg = Release|x64
+		{44BF9E39-A95F-4908-8AF0-2DD5DB763F1F}.Release|x64.Build.0 = Release|x64
+		{44BF9E39-A95F-4908-8AF0-2DD5DB763F1F}.Release|x86.ActiveCfg = Release|Win32
+		{44BF9E39-A95F-4908-8AF0-2DD5DB763F1F}.Release|x86.Build.0 = Release|Win32
+		{16C90B86-6D2A-4384-83A1-BF8E1ECC65EA}.Debug|x64.ActiveCfg = Debug|x64
+		{16C90B86-6D2A-4384-83A1-BF8E1ECC65EA}.Debug|x64.Build.0 = Debug|x64
+		{16C90B86-6D2A-4384-83A1-BF8E1ECC65EA}.Debug|x86.ActiveCfg = Debug|Win32
+		{16C90B86-6D2A-4384-83A1-BF8E1ECC65EA}.Debug|x86.Build.0 = Debug|Win32
+		{16C90B86-6D2A-4384-83A1-BF8E1ECC65EA}.Release|x64.ActiveCfg = Release|x64
+		{16C90B86-6D2A-4384-83A1-BF8E1ECC65EA}.Release|x64.Build.0 = Release|x64
+		{16C90B86-6D2A-4384-83A1-BF8E1ECC65EA}.Release|x86.ActiveCfg = Release|Win32
+		{16C90B86-6D2A-4384-83A1-BF8E1ECC65EA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
