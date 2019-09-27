@@ -9,6 +9,9 @@
 using namespace std;
 
 bool cmp(string& a, string& b) {
+	// 注意，字符串拼接结果最小的判断方法。
+	// 而不能直接a<b（只有当全部为1位可以这样做）
+	// 如 12+3<3+12，但如果按3<12将错判
 	return a + b < b + a;
 }
 
