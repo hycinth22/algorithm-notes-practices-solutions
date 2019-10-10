@@ -130,7 +130,11 @@ int main()
 		for (auto idata = target[1].rbegin(); idata != target[1].rend(); ++idata) {
 			cin >> *idata;
 		}
-		// 坑：读取完再检测是否无数据。否则会有一组空数据。因为读取完最后一组数据之后，再次尝试读取，才会置fail/eof
+		// 坑：读取完再检测是否无数据。否则会有一组空数据。
+
+		// 取完最后一组数据之后，再次尝试读取，才会置fail/eof。
+		// 因此必须保证读取完最后一组数据与检测流有效性之间，还进行了尝试读取。
+		// 理想情况在cin >> x就借助返回值检查流，如while(cin >> x >> y >> z)
 		if (cin.fail()) {
 			break;
 		}

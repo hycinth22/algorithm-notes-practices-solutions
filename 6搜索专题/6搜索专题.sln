@@ -27,6 +27,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "广度优先搜索codeup599
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "广度优先搜索codeup5998", "广度优先搜索codeup5998\广度优先搜索codeup5998.vcxproj", "{F3880207-FA4D-494E-992E-CB051AB8591B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "广度优先搜索codeup5999", "广度优先搜索codeup5999\广度优先搜索codeup5999.vcxproj", "{CD6308D9-2504-41AC-B913-72F2E20BC678}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -131,6 +133,14 @@ Global
 		{F3880207-FA4D-494E-992E-CB051AB8591B}.Release|x64.Build.0 = Release|x64
 		{F3880207-FA4D-494E-992E-CB051AB8591B}.Release|x86.ActiveCfg = Release|Win32
 		{F3880207-FA4D-494E-992E-CB051AB8591B}.Release|x86.Build.0 = Release|Win32
+		{CD6308D9-2504-41AC-B913-72F2E20BC678}.Debug|x64.ActiveCfg = Debug|x64
+		{CD6308D9-2504-41AC-B913-72F2E20BC678}.Debug|x64.Build.0 = Debug|x64
+		{CD6308D9-2504-41AC-B913-72F2E20BC678}.Debug|x86.ActiveCfg = Debug|Win32
+		{CD6308D9-2504-41AC-B913-72F2E20BC678}.Debug|x86.Build.0 = Debug|Win32
+		{CD6308D9-2504-41AC-B913-72F2E20BC678}.Release|x64.ActiveCfg = Release|x64
+		{CD6308D9-2504-41AC-B913-72F2E20BC678}.Release|x64.Build.0 = Release|x64
+		{CD6308D9-2504-41AC-B913-72F2E20BC678}.Release|x86.ActiveCfg = Release|Win32
+		{CD6308D9-2504-41AC-B913-72F2E20BC678}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
