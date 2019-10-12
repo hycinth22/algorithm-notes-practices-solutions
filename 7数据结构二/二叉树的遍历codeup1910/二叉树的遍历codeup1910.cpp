@@ -20,28 +20,28 @@ void traversalPostOrder(node* root) {
 	cout << root->data;
 }
 
-node* rebuild(const string& preorder, const string &midorder) {
+node* rebuild(const string& preorder, const string &inorder) {
 	node* root = new node();
-	if (preorder.empty() || midorder.empty()) {
+	if (preorder.empty() || inorder.empty()) {
 		return nullptr;
 	}
 	root->data = preorder.front();
-	auto pos = midorder.find(root->data);
-	string midleft = midorder.substr(0, pos),
-		midright = midorder.substr(pos+1);
-	string preleft = preorder.substr(1, midleft.size()),
-		preright = preorder.substr(1+midleft.size());
-	// assert(preright.size() == midright.size())
-	root->left = rebuild(preleft, midleft);
-	root->right = rebuild(preright, midright);
+	auto pos = inorder.find(root->data);
+	string inleft = inorder.substr(0, pos),
+		inright = inorder.substr(pos+1);
+	string preleft = preorder.substr(1, inleft.size()),
+		preright = preorder.substr(1+inleft.size());
+	// assert(preright.size() == inright.size())
+	root->left = rebuild(preleft, inleft);
+	root->right = rebuild(preright, inright);
 	return root;
 }
 
 int main()
 {
-	string preorder, midorder;
-	while (getline(cin, preorder), getline(cin, midorder)) {
-		auto root = rebuild(preorder, midorder);
+	string preorder, inorder;
+	while (getline(cin, preorder), getline(cin, inorder)) {
+		auto root = rebuild(preorder, inorder);
 		traversalPostOrder(root);
 		cout << endl;
 	}
