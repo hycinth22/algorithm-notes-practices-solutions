@@ -32,7 +32,7 @@ node* rebuild(vector<int>::const_iterator preorder_begin,
 	// 从中序遍历中计算左右子树长度
 	size_t lenL = itInLEnd - itInLBegin,
 		lenR = itInREnd - itInRBegin;
-	// 根据左右子树长度，从后序遍历中区分左右子树
+	// 根据左右子树长度，从先序遍历中区分左右子树
 	auto itPreLBegin = preorder_begin,
 		itPreLEnd = preorder_begin + lenL;
 	auto itPreRBegin = itPreLEnd,
@@ -63,11 +63,13 @@ int main()
 	while (n--) {
 		string op;
 		cin >> op;
+		// Push的顺序与先序遍历顺序相同。
 		if (op == "Push") {
 			int data; cin >> data;
 			preorder.push_back(data);
 			s.push(data);
 		}
+		// Pop的顺序与中序遍历顺序相同（输入是中序遍历时对栈的操作）。
 		else if (op == "Pop") {
 			inorder.push_back(s.top());
 			s.pop();
