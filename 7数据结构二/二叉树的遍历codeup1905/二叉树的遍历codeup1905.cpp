@@ -1,4 +1,4 @@
-﻿// 二叉树的遍历codeup1095.cpp
+﻿// 二叉树的遍历codeup1905.cpp
 //
 
 #include <iostream>
@@ -6,7 +6,7 @@
 using namespace std;
 
 // DFS
-// 二叉树层数(n)深之后，BFS每层宽度2*n，而DFS深度n，更为节省空间。
+// 二叉树层数(n)深之后，BFS每层宽度2*n，而DFS遍历深度n，更为节省空间。
 // 无论DFS还是BFS都需要遍历整个子树，时间效率应该没有太大差别
 int cnt(int n, int m) {
 	if (n > m) {
