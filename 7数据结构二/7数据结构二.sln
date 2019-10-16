@@ -23,6 +23,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "树的遍历A1079", "树的
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "树的遍历A1090", "树的遍历A1090\树的遍历A1090.vcxproj", "{26B53A64-BE1C-468C-948A-AF8B662AD02A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "树的遍历A1094", "树的遍历A1094\树的遍历A1094.vcxproj", "{6BEAF02B-4944-4998-9B9F-625C36DE08E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -111,6 +113,14 @@ Global
 		{26B53A64-BE1C-468C-948A-AF8B662AD02A}.Release|x64.Build.0 = Release|x64
 		{26B53A64-BE1C-468C-948A-AF8B662AD02A}.Release|x86.ActiveCfg = Release|Win32
 		{26B53A64-BE1C-468C-948A-AF8B662AD02A}.Release|x86.Build.0 = Release|Win32
+		{6BEAF02B-4944-4998-9B9F-625C36DE08E8}.Debug|x64.ActiveCfg = Debug|x64
+		{6BEAF02B-4944-4998-9B9F-625C36DE08E8}.Debug|x64.Build.0 = Debug|x64
+		{6BEAF02B-4944-4998-9B9F-625C36DE08E8}.Debug|x86.ActiveCfg = Debug|Win32
+		{6BEAF02B-4944-4998-9B9F-625C36DE08E8}.Debug|x86.Build.0 = Debug|Win32
+		{6BEAF02B-4944-4998-9B9F-625C36DE08E8}.Release|x64.ActiveCfg = Release|x64
+		{6BEAF02B-4944-4998-9B9F-625C36DE08E8}.Release|x64.Build.0 = Release|x64
+		{6BEAF02B-4944-4998-9B9F-625C36DE08E8}.Release|x86.ActiveCfg = Release|Win32
+		{6BEAF02B-4944-4998-9B9F-625C36DE08E8}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
