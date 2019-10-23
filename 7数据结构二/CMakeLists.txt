@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.13)
+project(7数据结构二)
+
+set(CMAKE_CXX_STANDARD 11)
+
+add_executable(BuildAll build/buildAll.cpp)
+add_executable(A1043 二叉查找树A1043/二叉查找树A1043.cpp)
+add_executable(A1020 二叉树的遍历A1020/二叉树的遍历A1020.cpp)
+add_executable(A1086 二叉树的遍历A1086/二叉树的遍历A1086.cpp)
+add_executable(A1102 二叉树的遍历A1102/二叉树的遍历A1102.cpp)
+add_executable(codeup1096 二叉树的遍历codeup1096/二叉树的遍历codeup1096.cpp)
+add_executable(codeup1905 二叉树的遍历codeup1905/二叉树的遍历codeup1905.cpp)
+add_executable(codeup1910 二叉树的遍历codeup1910/二叉树的遍历codeup1910.cpp)
+add_executable(codeup2014 二叉树的遍历codeup2014/二叉树的遍历codeup2014.cpp)
+add_executable(A1004 树的遍历A1004/树的遍历A1004.cpp)
+add_executable(A1053 树的遍历A1053/树的遍历A1053.cpp)
+add_executable(A1079 树的遍历A1079/树的遍历A1079.cpp)
+add_executable(A1090 树的遍历A1090/树的遍历A1090.cpp)
+add_executable(A1094 树的遍历A1094/树的遍历A1094.cpp)
+
