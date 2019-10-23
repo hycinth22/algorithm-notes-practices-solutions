@@ -77,7 +77,7 @@ void dfs(const int& n, const int& k, const vector<int>& powers,
 	}
 }
 
-inline auto search(int n, int k, const vector<int>& powers) {
+inline vector<int> search(int n, int k, const vector<int>& powers) {
 	vector<int> v; int sum = 0;
 	resultFac.clear();
 	vector<int> selectedFac(k), selectedPow(k);
