@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.13)
+project(搜索专题)
+
+set(CMAKE_CXX_STANDARD 11)
+
+add_executable(A1091 广度优先搜索A1091/广度优先搜索A1091.cpp)
+add_executable(codeup2078 广度优先搜索codeup2078/广度优先搜索codeup2078.cpp)
+add_executable(codeup5997 广度优先搜索codeup5997/广度优先搜索codeup5997.cpp)
+add_executable(codeup5998 广度优先搜索codeup5998/广度优先搜索codeup5998.cpp)
+add_executable(codeup5999 广度优先搜索codeup5999/广度优先搜索codeup5999.cpp)
+add_executable(A1103 深度优先搜索A1103/深度优先搜索A1103.cpp)
+add_executable(codeup4054 深度优先搜索codeup4054/深度优先搜索codeup4054.cpp)
+add_executable(codeup5972 深度优先搜索codeup5972/深度优先搜索codeup5972.cpp)
+add_executable(codeup5973 深度优先搜索codeup5973/深度优先搜索codeup5973.cpp)
+add_executable(codeup5974 深度优先搜索codeup5974/深度优先搜索codeup5974.cpp)
+add_executable(codeup5976 深度优先搜索codeup5976/深度优先搜索codeup5976.cpp)
+add_executable(codeup5977 深度优先搜索codeup5977/深度优先搜索codeup5977.cpp)
+add_executable(codeup5978 深度优先搜索codeup5978/深度优先搜索codeup5978.cpp)

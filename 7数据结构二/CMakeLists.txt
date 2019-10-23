@@ -1,9 +1,8 @@
 cmake_minimum_required(VERSION 3.13)
-project(7数据结构二)
+project(数据结构二)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(BuildAll build/buildAll.cpp)
 add_executable(A1043 二叉查找树A1043/二叉查找树A1043.cpp)
 add_executable(A1020 二叉树的遍历A1020/二叉树的遍历A1020.cpp)
 add_executable(A1086 二叉树的遍历A1086/二叉树的遍历A1086.cpp)
