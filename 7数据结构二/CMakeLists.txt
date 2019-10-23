@@ -16,4 +16,4 @@ add_executable(A1053 树的遍历A1053/树的遍历A1053.cpp)
 add_executable(A1079 树的遍历A1079/树的遍历A1079.cpp)
 add_executable(A1090 树的遍历A1090/树的遍历A1090.cpp)
 add_executable(A1094 树的遍历A1094/树的遍历A1094.cpp)
-
+add_executable(A1064 二叉查找树A1064/A1064.cpp)
