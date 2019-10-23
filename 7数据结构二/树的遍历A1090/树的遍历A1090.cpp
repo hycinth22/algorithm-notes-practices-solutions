@@ -32,8 +32,8 @@ int main()
 	for (int i = 0; i < n; ++i) {
 		assureCalc(all, i, r);
 	}
-	double maxprice = max_element(all.cbegin(), all.cend(), [](auto& a, auto& b) {return a.price < b.price; })->price;
-	int cnt = count_if(all.cbegin(), all.cend(), [maxprice](auto& s) {return s.price == maxprice; });
+	double maxprice = max_element(all.cbegin(), all.cend(), [](const seller& a, const seller& b) {return a.price < b.price; })->price;
+	int cnt = count_if(all.cbegin(), all.cend(), [maxprice](const seller& s) {return s.price == maxprice; });
 	printf("%.2f %d", maxprice, cnt);
 }
 
