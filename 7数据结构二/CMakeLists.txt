@@ -18,8 +18,5 @@ add_executable(A1090 树的遍历A1090/树的遍历A1090.cpp)
 add_executable(A1094 树的遍历A1094/树的遍历A1094.cpp)
 add_executable(A1064 二叉查找树A1064/A1064.cpp)
 add_executable(A1099 二叉查找树A1099/A1099.cpp)
-add_executable(codeup1773
-        二叉平衡树codeup1773/codeup1773.cpp
-        二叉平衡树codeup1773/bst.cpp
-        二叉平衡树codeup1773/avl.cpp
-        )
+add_executable(codeup1773 二叉平衡树codeup1773/codeup1773.cpp 二叉平衡树codeup1773/avl.cpp)
+add_executable(A1066 二叉平衡树A1066/A1066.cpp)
