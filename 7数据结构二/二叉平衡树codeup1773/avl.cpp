@@ -52,16 +52,17 @@ struct AVLTree::node {
         return nullptr; // drop the equivalent element
     }
 
-    int updateHeight() {
+    void updateHeight() {
         int hLeft = 0, hRight = 0;
         if (left) {
-            hLeft = left->updateHeight();
+            left->updateHeight();
+            hLeft = left->height;
         }
         if (right) {
-            hRight = right->updateHeight();
+            right->updateHeight();
+            hRight = right->height;
         }
         height = max(hLeft, hRight) + 1;
-        return height;
     }
     int balanceFactor() {
         return (left?left->height:0) - (right?right->height:0);
