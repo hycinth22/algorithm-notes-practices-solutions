@@ -5,7 +5,7 @@
 using namespace std;
 
 struct usSet {
-    using hash_type = size_t;
+    using hash_type = usSet*;
 
     usSet() = default;
 
@@ -20,7 +20,7 @@ struct usSet {
     int rank;
 
     void unionSet(usSet &s) {
-        // root为路径压缩用途，同时也是判断是否已被并入其他集合
+        // 判断是否已被并入其他集合
         if (root != this) {
             root->unionSet(s);
             return;
@@ -30,12 +30,16 @@ struct usSet {
             s.unionSet(*this);
             return;
         }
-        s.root = this; // 路径压缩
+        s.root = this; // 合并集合
         this->rank += s.rank;
     }
 
-    hash_type hash() {
-        return reinterpret_cast<hash_type>(root);
+    hash_type getroot() {
+        if (root == this) {
+            return this;
+        }
+        root = root->getroot(); // 查询的同时进行路径压缩
+        return root;
     }
 };
 
@@ -53,7 +57,7 @@ int main() {
     }
     unordered_set<usSet::hash_type> c;
     for (int i = 1; i <= n; i++) {
-        c.insert(s[i].hash());
+        c.insert(s[i].getroot());
     }
     cout << c.size() << endl;
 }
