@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.13)
 project(数据结构二)
 
 set(CMAKE_CXX_STANDARD 11)
-
+add_definitions(-D_DEBUG)
 add_executable(A1043 二叉查找树A1043/二叉查找树A1043.cpp)
 add_executable(A1020 二叉树的遍历A1020/二叉树的遍历A1020.cpp)
 add_executable(A1086 二叉树的遍历A1086/二叉树的遍历A1086.cpp)
@@ -21,3 +21,5 @@ add_executable(A1099 二叉查找树A1099/A1099.cpp)
 add_executable(codeup1773 二叉平衡树codeup1773/codeup1773.cpp 二叉平衡树codeup1773/avl.cpp)
 add_executable(A1066 二叉平衡树A1066/A1066.cpp)
 add_executable(p 并查集unamed/p.cpp)
+add_executable(codeup1106 并查集codeup1106/codeup1106.cpp)
+

@@ -30,7 +30,7 @@ struct usSet {
             s.unionSet(*this);
             return;
         }
-        s.root = this; // 合并集合
+        s.root = this->getroot(); // 合并集合
         this->rank += s.rank;
     }
 

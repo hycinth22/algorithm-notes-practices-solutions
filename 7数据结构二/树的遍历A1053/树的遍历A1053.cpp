@@ -48,7 +48,7 @@ void findPath(list<int> &path, int weight) {
 
 int main()
 {
-	cin.sync_with_stdio(0); cout.sync_with_stdio(0);
+	ios::sync_with_stdio(false);
 	int n, m, s; cin >> n >> m >> s;
 	tree.resize(n);
 	for (node& n : tree) {
