@@ -4,66 +4,101 @@
 
 #include <bits/stdc++.h>
 
-#define OPTIMIZE_COMPRESS_PATH
 using namespace std;
 
-const int n = 10000000;
-array<int, n + 1> represent;
-array<int, n + 1> rak; // 只有根节点的rank是有效的。
+#define OPTIMIZE_COMPRESS_PATH
 
-void init() {
-    for (int i = 1; i <= n; i++) {
-        represent[i] = i;
-        rak[i] = 1;
+template<int n>
+class disjointSets {
+    using size_type = int;
+public:
+    // O(n)
+    disjointSets()
+            :
+            rak(*new array<size_type, n>()),
+            ancestor(*new array<size_type, n>()) {
+        reset();
     }
-}
 
-int ancestor(int x) {
-    while (x != represent[x]) {
-        x = represent[x];
+    ~disjointSets() {
+        delete &rak;
+        delete &ancestor;
     }
-    return x;
-}
-
-void unionSet(int ra, int rb) {
-    int a = ancestor(ra), b = ancestor(rb);
-    if (a != b) { // 此处必须验证是否已同集合，调用方不会保证这点。
-        if (rak[a] < rak[b]) {
-            swap(a, b);
+    // O(n)
+    void reset() {
+        for (size_type i = 1; i <= n; ++i) {
+            ancestor[i] = i;
+            rak[i] = 1;
         }
-        rak[a] += rak[b];
-        represent[b] = a;
+    }
+
+    // O(n)
+    size_type count() {
+        size_type cnt = 0;
+        for (size_type i = 1; i <= n; ++i) {
+            if (findAnc(i) == i) {
+                ++cnt;
+            }
+        }
+        return cnt;
+    }
+
+    void unionSet(int ua, int ub) {
+        int a = findAnc(ua), b = findAnc(ub);
+        if (a != b) {
+            if (rak[a] < rak[b]) {
+                swap(a, b);
+            }
+            rak[a] += rak[b];
+            ancestor[b] = a;
 #ifdef OPTIMIZE_COMPRESS_PATH
-        while (represent[rb] != a && represent[rb] != rb) {
-            ra = represent[rb]; // reuse ra as temporary variety
-            represent[rb] = a;
-            rb = ra;
-        }
+            while (ancestor[ub] != a && ancestor[ub] != ub) {
+                ua = ancestor[ub]; // reuse ua as temporary variety
+                ancestor[ub] = a;
+                ub = ua;
+            }
 #endif
+        }
     }
-}
 
-int maxSetSize() {
-    int r = 0;
-    for (int i = 1; i <= n; i++) {
-        r = max(r, rak[i]);
+    bool inSameSet(int a, int b) {
+        return findAnc(a) == findAnc(b);
     }
-    return r;
-}
+
+    int maxSetSize() {
+        int r = 0;
+        for (int i = 1; i <= n; i++) {
+            r = max(r, rak[i]);
+        }
+        return r;
+    }
+private:
+    array<size_type, n> &ancestor;
+    array<size_type, n> &rak; // 只有根节点的rank是有效的。
+
+    size_type findAnc(size_type x) {
+        while (ancestor[x] != x) {
+            x = ancestor[x];
+        }
+        return x;
+    }
+};
 
 int main() {
 #ifdef _DEBUG
     freopen("test0.in", "r", stdin);
 #endif
     ios_base::sync_with_stdio(false);
+    const int n = 10000000;
     int m;
+    disjointSets<n> djs;
     while (cin >> m) {
-        init();
+        djs.reset();
         for (int i = 1; i <= m; ++i) {
             int a, b;
             cin >> a >> b;
-            unionSet(a, b);
+            djs.unionSet(a, b);
         }
-        cout << maxSetSize() << endl;
+        cout << djs.maxSetSize() << endl;
     }
 }
