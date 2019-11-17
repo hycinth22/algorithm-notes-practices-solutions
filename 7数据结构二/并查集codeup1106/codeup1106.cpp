@@ -34,10 +34,13 @@ bool aCase(int n, int m) {
         while (represent[rootpre] != rootpre) {
             rootpre = represent[rootpre];
         }
+        rank[rootpre] += rank[b];
+        rank[a] = rank[b] = rank[rootpre];
         int t = represent[a];
         while (represent[t] != t) {
             int p = represent[t];
             represent[t] = rootpre;
+            rank[t] = rank[rootpre];
             t = p;
         }
         represent[a] = represent[b] = rootpre;
