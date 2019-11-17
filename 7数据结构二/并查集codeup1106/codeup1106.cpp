@@ -8,7 +8,7 @@ using namespace std;
 
 bool aCase(int n, int m) {
     vector<int> represent(n + 1, -1);
-    vector<int> rank(n + 1, -1);
+    vector<int> rank(n + 1, -1); // 只有根节点的rank是有效的。
     for (int i = 1; i <= n; i++) {
         represent[i] = i;
         rank[i] = 1;

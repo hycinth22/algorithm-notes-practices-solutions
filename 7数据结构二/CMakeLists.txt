@@ -22,4 +22,4 @@ add_executable(codeup1773 二叉平衡树codeup1773/codeup1773.cpp 二叉平衡�
 add_executable(A1066 二叉平衡树A1066/A1066.cpp)
 add_executable(p 并查集unamed/p.cpp)
 add_executable(codeup1106 并查集codeup1106/codeup1106.cpp)
-
+add_executable(codeup1953 并查集codeup1953/codeup1953.cpp)
