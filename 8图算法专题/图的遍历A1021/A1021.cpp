@@ -57,6 +57,8 @@ int solve(const vector<vector<int>> &nearby, int n,
             ++cnt;
         }
     }
+    // 由于题目给定n-1条边，对于n个点，在只有一个连通块的情形下，一定不成环。
+    // 满足一个连通块，无环自动满足，无须额外检查即一定成树。
     if (cnt == 1) {
         fill_n(v.begin(), n, false);
         dfs(nearby, n, deepest2, v, *deepest1.begin(), deepestDepth);
@@ -76,7 +78,7 @@ int main() {
         nearby[a].push_back(b);
         nearby[b].push_back(a);
     }
-    vector<int> ans;
+    vector<int> ans; sort(ans.begin(), ans.end()); unique(ans.begin(), ans.end());
     int ret = solve(nearby, n, ans);
     if (ret == 1) {
         for (int a: ans) {
