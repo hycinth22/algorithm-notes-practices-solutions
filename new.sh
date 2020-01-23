@@ -1,7 +1,7 @@
-id="$1"
-title="$2$1"
+id="$2"
+title="$1$2"
 folder="${title}"
-complile="${folder}/$id.cpp ${folder}/fake_ostream.cpp"
+complile="${folder}/$id.cpp"
 
 mkdir "${folder}"
 cp -r ../刷题模板/* "${folder}"/
