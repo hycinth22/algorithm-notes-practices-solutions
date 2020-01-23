@@ -42,18 +42,21 @@ int dijkstra(const vector<int> &teams, const map<pair<int, int>, int> &roads,
     vector<int> cntPath(n);
     vector<int> weight(n, 0); // weight[i]：从起点到点i的集结人手（维护其最大）
 
-    // 起点需要特殊处理。
+    // 起点需要特殊处理。但是不要给起点设置visited，需要以起点为中间点先得到起点周围点。
     distance[start] = 0;
     cntPath[start] = 1;
     weight[start] = teams[start];
 
     for (int c = 0; c < n; ++c) {
         // 从未访问过的点中选取起点可到达的最近的点，存在距离相同的点时则选取weight较大的
-        auto init = find(visited.begin(), visited.end(), false);
-        if (init == visited.end()) {
-            return maxDistance; // 目标点不可达
+        int next = -1;
+        for (int i=0; i<n; i++) {
+            if (!visited[i] && (next==-1 || distance[i] < distance[next])) {
+                next = i;
+            }
         }
-        int next = init - visited.begin();
+        if (next == -1) break; // 剩余点不可达
+
         for (int i = next + 1; i < n; ++i) {
             if (!visited[i] &&
                 (distance[i] < distance[next] ||
