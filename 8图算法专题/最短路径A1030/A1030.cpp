@@ -21,16 +21,14 @@ list<int> dijkstra(int &totaldis, int &totalcost) {
     vector<int> sumdistance(n, 0x3f3f3f3f);
     vector<int> sumcost(n, 0x3f3f3f3f);
     vector<int> prev(n, -1);
-    sumdistance[start] = 0; sumcost[start]=0;
+    sumdistance[start] = 0;
+    sumcost[start] = 0;
 
     for (int cnt = 0; cnt < n; ++cnt) {
         int s = -1;
         for (int i = 0; i < n; ++i) {
             if (!v[i] &&
-                (s == -1 ||
-                 sumdistance[i] < sumdistance[s] ||
-                 (sumdistance[i] == sumdistance[s] && sumcost[i] < sumcost[s])
-                )) {
+                (s == -1 || sumdistance[i] < sumdistance[s])) { // 只需要判断第一标尺距离
                 s = i;
             }
         }
@@ -47,7 +45,8 @@ list<int> dijkstra(int &totaldis, int &totalcost) {
                     prev[i] = s;
                     sumdistance[i] = sumdistance[s] + dis[s][i];
                     sumcost[i] = sumcost[s] + cost[s][i];
-                    clog << " could reach " << i << " in (" << sumdistance[i] << "," << sumcost[i] << ") via " <<  s << endl;
+                    clog << " could reach " << i << " in (" << sumdistance[i] << "," << sumcost[i] << ") via " << s
+                         << endl;
                 }
             }
         }
@@ -59,7 +58,7 @@ list<int> dijkstra(int &totaldis, int &totalcost) {
     }
     list<int> route;
     int p = dest;
-    while(p != -1) {
+    while (p != -1) {
         route.push_front(p);
         p = prev[p];
     }
@@ -84,7 +83,7 @@ int main() {
     auto it = v.begin();
     assert(!v.empty());
     cout << *it++;
-    for (; it!=v.end(); it++) {
+    for (; it != v.end(); it++) {
         cout << " " << *it;
     }
     cout << " " << totaldis << " " << totalcost << endl;
