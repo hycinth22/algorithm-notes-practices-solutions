@@ -15,18 +15,6 @@ struct fakeOSType {
 #define clog nullos
 #endif
 
-struct road {
-    int target;
-    int length;
-
-    bool operator<(const road &rhs) const {
-        if (target < rhs.target) {
-            return true;
-        }
-        return length < rhs.length;
-    }
-};
-
 int dijkstra(const vector<int> &teams, const map<pair<int, int>, int> &roads,
              int n, int start, int target,
              int &cntShortestPath, int &maxTeamsAmount
