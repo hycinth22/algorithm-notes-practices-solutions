@@ -3,25 +3,26 @@ using namespace std;
 
 int solution(int cap, const vector<int> &items) {
     if (items.empty()) return cap;
-    vector<vector<int>> r(items.size(), vector<int>(cap + 1));
+    vector<int> pr(cap + 1), r(cap + 1);
     for (int c = 0; c <= cap; ++c) {
         if (c >= items[0]) {
-            r[0][c] = items[0];
+            pr[c] = items[0];
         } else {
-            r[0][c] = 0;
+            pr[c] = 0;
         }
     }
     for (size_t i = 1; i < items.size(); ++i) {
         for (int c = 0; c <= cap; ++c) {
             // 求r[i][c]
             if (c >= items[i]) {
-                r[i][c] = max(r[i - 1][c], r[i - 1][c - items[i]] + items[i]);
+                r[c] = max(pr[c], pr[c - items[i]] + items[i]);
             } else {
-                r[i][c] = r[i - 1][c];
+                r[c] = pr[c];
             }
         }
+        r.swap(pr);
     }
-    return cap - r.back().back();
+    return cap - pr.back();
 }
 
 int main() {
