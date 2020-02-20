@@ -30,20 +30,14 @@ int main() {
     int n, m, l;
     cin >> n;
     cin >> m;
-    vector<int> fav;
-    fav.reserve(m);
+    vector<int> fav(m);
     for (int i = 0; i < m; i++) {
-        int t;
-        cin >> t;
-        fav.push_back(t);
+        cin >> fav[i];
     }
-    vector<int> stripe;
     cin >> l;
-    stripe.reserve(l);
+    vector<int> stripe(l);
     for (int i = 0; i < l; i++) {
-        int t;
-        cin >> t;
-        stripe.push_back(t);
+        cin >> stripe[i];
     }
     cout << f(stripe, fav) << endl;
 }

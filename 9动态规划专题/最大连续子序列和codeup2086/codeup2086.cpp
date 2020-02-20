@@ -34,11 +34,9 @@ int main() {
         if (n == 0) {
             break;
         }
-        vector<int> v;
-        while (n--) {
-            int k;
-            cin >> k;
-            v.push_back(k);
+        vector<int> v(n);
+        for (size_t i = 0; i < n; ++i) {
+            cin >> v[i];
         }
         int s, a, b;
         s = f(v, a, b);

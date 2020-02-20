@@ -12,7 +12,7 @@ size_t f(const vector<int> &stripe, const vector<int> &fav) {
     }
     // 从stripe分离出所有喜欢的颜色的fav索引。平均O(m)
     vector<int> stripeFavIndex;
-    for (auto& color : stripe) {
+    for (auto &color : stripe) {
         if (favIndex.count(color)) {
             stripeFavIndex.push_back(favIndex[color]);
         }
@@ -34,18 +34,14 @@ int main() {
     int n, m, l;
     cin >> n;
     cin >> m;
-    vector<int> fav; fav.reserve(m);
+    vector<int> fav(m);
     for (int i = 0; i < m; i++) {
-        int t;
-        cin >> t;
-        fav.push_back(t);
+        cin >> fav[i];
     }
-    vector<int> stripe;
-    cin >> l;  stripe.reserve(l);
+    cin >> l;
+    vector<int> stripe(l);
     for (int i = 0; i < l; i++) {
-        int t;
-        cin >> t;
-        stripe.push_back(t);
+        cin >> stripe[i];
     }
     cout << f(stripe, fav) << endl;
 }

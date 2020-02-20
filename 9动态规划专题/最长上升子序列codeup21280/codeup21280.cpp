@@ -22,11 +22,9 @@ int main() {
     ios_base::sync_with_stdio(false);
     int n;
     cin >> n;
-    vector<int> v;
-    while (n--) {
-        int t;
-        cin >> t;
-        v.push_back(t);
+    vector<int> v(n);
+    for (size_t i = 0; i < n; ++i) {
+        cin >> v[i];
     }
     cout << maxLISlen(v) << endl;
 }
