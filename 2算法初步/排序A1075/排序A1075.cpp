@@ -1,24 +1,27 @@
 ﻿// 排序A1075.cpp
-// 最后一个测试点仍然偶尔可能超时
+// 排序A1075.cpp
 
 #include <iostream>
 #include <vector>
 #include <algorithm> 
-#include <functional>
 #include <unordered_map>
+#include <utility>
 using namespace std;
 
 const int score_none = -99999;
-const auto isValidScore = bind(greater_equal<int>(), placeholders::_1, 0);
 
 struct userinfo {
+	userinfo() = default;
 	userinfo(const int& cntProblems)
 		: scores(cntProblems, score_none)
 	{}
 	userinfo(const userinfo&o) 
-		: total(o.total), perfect(o.perfect)
+		: total(o.total), perfect(o.perfect), rank(o.rank)
 	{}
-	userinfo() {}
+	userinfo(userinfo&&o) 
+		: total(o.total), perfect(o.perfect), rank(o.rank),
+		scores(move(o.scores))
+	{}
 	int total = 0;
 	int perfect = 0;
 	int rank;
@@ -27,11 +30,12 @@ struct userinfo {
 
 int main()
 {
+    ios_base::sync_with_stdio(0);
 	int cntUser, cntProblems, cntSubmission;
-	cin >> cntUser >> cntProblems >> cntSubmission; //scanf("%d%d%d", &cntUser, &cntProblems, &cntSubmission);
+	cin >> cntUser >> cntProblems >> cntSubmission;
 	vector<int> fullMarks(cntProblems);
 	for (int i = 0; i < cntProblems;i++) {
-		cin >> fullMarks[i]; // scanf("%d", &fullMarks[i]);
+		cin >> fullMarks[i];
 	}
 	vector<string> users; users.reserve(cntUser);
 	unordered_map<string, userinfo > usersinfo; usersinfo.reserve(cntUser);
@@ -66,7 +70,7 @@ int main()
 	for (string& uid : users) {
 		usersinfo[uid].total = 0;
 		bool hasTotal = false; // 是否有过有效提交
-		for (int& score : usersinfo[uid].scores) {
+		for (int score : usersinfo[uid].scores) {
 			if (score >= 0) { // <0为特殊标志，代表无效分数，数值区分不同无效情形
 				usersinfo[uid].total += score;
 				hasTotal = true;
@@ -89,7 +93,6 @@ int main()
 	if (usersinfo.empty()) {
 		return 0;
 	}
-	// 此处也不适合用for-range
 	for (size_t i = 0; i < users.size(); i++) {
 		const string& uid = users[i];
 		userinfo& u = usersinfo[uid];
@@ -122,4 +125,3 @@ int main()
 		printf("\n"); // cout << endl;
 	}
 }
-
